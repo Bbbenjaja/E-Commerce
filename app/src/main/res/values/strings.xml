@@ -4,5 +4,9 @@
 
     <!-- Home labels -->
     <string name="home">Inicio</string>
+    <string name="search_product">Buscar producto</string>
+    <string name="categories">Categorias</string>
+    <string name="view_all">Ver todo</string>
+    <string name="products">Productos</string>
 
 </resources>
