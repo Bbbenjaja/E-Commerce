@@ -5,11 +5,11 @@
 
     <color name="primary_back">#F4F6F6</color>
     <color name="primary">#FFFFFFFF</color>
-    <color name="secondary">#272929</color>
-    <color name="accent">#00AF35</color>
+    <color name="secondary">#252E42</color>
+    <color name="accent">#2196F3</color>
 
-    <color name="text_color_primary">#1E0342</color>
-    <color name="text_color_primary_opaque">#801E0342</color>
+    <color name="text_color_primary">#202437</color>
+    <color name="text_color_primary_opaque">#80202437</color>
     <color name="text_color_secondary">#FFFFFFFF</color>
     <color name="text_color_accent">#FFFFFFFF</color>
 
