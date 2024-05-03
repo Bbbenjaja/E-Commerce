@@ -9,6 +9,7 @@ import com.toolstodo.ecommerce.domain.model.Product
 
 class ProductAdapter constructor(
     private var productList: List<Product>,
+    private val onProductClick: (Product) -> Unit
 ) : RecyclerView.Adapter<ProductHolder>() {
 
     fun updateList(newList: List<Product>) {
@@ -20,7 +21,8 @@ class ProductAdapter constructor(
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ProductHolder {
         return ProductHolder(
-            LayoutInflater.from(parent.context).inflate(R.layout.product_item, parent, false)
+            LayoutInflater.from(parent.context).inflate(R.layout.product_item, parent, false),
+            onProductClick
         )
     }
 

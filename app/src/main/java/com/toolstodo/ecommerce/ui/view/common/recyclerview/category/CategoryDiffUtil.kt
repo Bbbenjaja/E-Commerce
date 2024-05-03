@@ -1,11 +1,10 @@
 package com.toolstodo.ecommerce.ui.view.common.recyclerview.category
 
 import androidx.recyclerview.widget.DiffUtil
-import com.toolstodo.ecommerce.domain.model.Category
 
 class CategoryDiffUtil constructor(
-    private val oldList: List<Category>,
-    private val newList: List<Category>
+    private val oldList: List<String>,
+    private val newList: List<String>
 ): DiffUtil.Callback() {
     override fun getOldListSize(): Int = oldList.size
 

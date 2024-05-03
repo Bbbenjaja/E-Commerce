@@ -6,6 +6,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.viewModels
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.toolstodo.ecommerce.R
@@ -45,7 +46,11 @@ class HomeFragment : Fragment() {
     }
 
     private fun initUI() {
-        productAdapter = ProductAdapter(emptyList())
+        productAdapter = ProductAdapter(emptyList()) {
+            val navToDetail = HomeFragmentDirections.actionHomeFragmentToDetailFragment(product = it)
+            findNavController().navigate(navToDetail)
+        }
+
         categoryAdapter = CategoryAdapter(emptyList())
 
         with(binding) {
@@ -63,8 +68,8 @@ class HomeFragment : Fragment() {
     }
 
     private fun initObservers() {
-        viewModel.productState.observe(viewLifecycleOwner) { products ->
-            productAdapter.updateList(products)
+        viewModel.infoState.observe(viewLifecycleOwner) { responseInfo ->
+            productAdapter.updateList(responseInfo.products)
         }
 
         viewModel.categoryState.observe(viewLifecycleOwner) { categories ->

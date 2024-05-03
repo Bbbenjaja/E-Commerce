@@ -5,13 +5,12 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
 import com.toolstodo.ecommerce.R
-import com.toolstodo.ecommerce.domain.model.Category
 
 class CategoryAdapter constructor(
-    private var categoryList: List<Category>,
+    private var categoryList: List<String>,
 ) : RecyclerView.Adapter<CategoryHolder>() {
 
-    fun updateList(newList: List<Category>) {
+    fun updateList(newList: List<String>) {
         val diffUtil = CategoryDiffUtil(categoryList, newList)
         val result = DiffUtil.calculateDiff(diffUtil)
         categoryList = newList

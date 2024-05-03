@@ -3,10 +3,9 @@ package com.toolstodo.ecommerce.ui.view.home.viewmodel
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.toolstodo.ecommerce.domain.model.Category
-import com.toolstodo.ecommerce.domain.model.Product
+import com.toolstodo.ecommerce.domain.model.ResponseInfo
 import com.toolstodo.ecommerce.domain.usecases.GetCategoriesUseCase
-import com.toolstodo.ecommerce.domain.usecases.GetProductsUseCase
+import com.toolstodo.ecommerce.domain.usecases.GetResponseInfoUseCase
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
@@ -14,24 +13,27 @@ import javax.inject.Inject
 
 @HiltViewModel
 class HomeViewModel @Inject constructor(
-    private val getProductsUseCase: GetProductsUseCase,
+    private val getResponseInfoUseCase: GetResponseInfoUseCase,
     private val getCategoriesUseCase: GetCategoriesUseCase
 ) : ViewModel() {
 
-    private val _productState = MutableLiveData<List<Product>>()
-    val productState get() = _productState
+    private val _infoState = MutableLiveData<ResponseInfo>()
+    val infoState get() = _infoState
 
-    private val _categoryState = MutableLiveData<List<Category>>()
+    private val _categoryState = MutableLiveData<List<String>>()
     val categoryState get() = _categoryState
 
+    val limit: Int = 20
+    var skip: Int = 0
+
     init {
-        fetchProducts()
+        fetchResponseInfo(limit = limit, skip = skip)
         fetchCategories()
     }
 
-    fun fetchProducts(){
+    fun fetchResponseInfo(limit: Int, skip: Int){
         viewModelScope.launch(Dispatchers.IO) {
-            _productState.postValue(getProductsUseCase())
+            _infoState.postValue(getResponseInfoUseCase(limit = limit, skip = skip))
         }
     }
 

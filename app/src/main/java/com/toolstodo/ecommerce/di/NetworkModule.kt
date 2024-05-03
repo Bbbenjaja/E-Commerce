@@ -1,6 +1,6 @@
 package com.toolstodo.ecommerce.di
 
-import com.toolstodo.ecommerce.data.network.PlatziStoreApiClient
+import com.toolstodo.ecommerce.data.network.DummyStoreApiClient
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -13,7 +13,7 @@ import javax.inject.Singleton
 @InstallIn(SingletonComponent::class)
 object NetworkModule {
 
-    private const val URL_API = "https://api.escuelajs.co/api/v1/"
+    private const val URL_API = "https://dummyjson.com/"
 
     @Singleton
     @Provides
@@ -26,8 +26,8 @@ object NetworkModule {
 
     @Singleton
     @Provides
-    fun providePlatziApiClient(retrofit: Retrofit): PlatziStoreApiClient =
-        retrofit.create(PlatziStoreApiClient::class.java)
+    fun provideDummyApiClient(retrofit: Retrofit): DummyStoreApiClient =
+        retrofit.create(DummyStoreApiClient::class.java)
 
 
 }
