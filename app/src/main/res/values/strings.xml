@@ -8,5 +8,9 @@
     <string name="categories">Categorias</string>
     <string name="view_all">Ver todo</string>
     <string name="products">Productos</string>
+    <string name="title">Titulo</string>
+    <string name="price">Precio</string>
+    <string name="description">Descripción</string>
+    <string name="dollar_sign">$</string>
 
 </resources>
