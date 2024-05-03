@@ -10,6 +10,7 @@ import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.toolstodo.ecommerce.R
 import com.toolstodo.ecommerce.databinding.FragmentHomeBinding
+import com.toolstodo.ecommerce.ui.view.common.recyclerview.category.CategoryAdapter
 import com.toolstodo.ecommerce.ui.view.common.recyclerview.product.ProductAdapter
 import com.toolstodo.ecommerce.ui.view.home.viewmodel.HomeViewModel
 import dagger.hilt.android.AndroidEntryPoint
@@ -22,6 +23,7 @@ class HomeFragment : Fragment() {
     private val viewModel: HomeViewModel by viewModels()
 
     private lateinit var productAdapter: ProductAdapter
+    private lateinit var categoryAdapter: CategoryAdapter
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -44,10 +46,15 @@ class HomeFragment : Fragment() {
 
     private fun initUI() {
         productAdapter = ProductAdapter(emptyList())
+        categoryAdapter = CategoryAdapter(emptyList())
 
-        with(binding){
+        with(binding) {
             rvProducts.layoutManager = GridLayoutManager(requireContext(), 2)
             rvProducts.adapter = productAdapter
+
+            rvCategories.layoutManager =
+                LinearLayoutManager(requireContext(), LinearLayoutManager.HORIZONTAL, false)
+            rvCategories.adapter = categoryAdapter
         }
     }
 
@@ -56,9 +63,14 @@ class HomeFragment : Fragment() {
     }
 
     private fun initObservers() {
-        viewModel.productState.observe(viewLifecycleOwner) { productList ->
-            productAdapter.updateList(productList)
+        viewModel.productState.observe(viewLifecycleOwner) { products ->
+            productAdapter.updateList(products)
         }
+
+        viewModel.categoryState.observe(viewLifecycleOwner) { categories ->
+            categoryAdapter.updateList(categories)
+        }
+
     }
 
 }

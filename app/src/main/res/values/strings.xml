@@ -11,6 +11,7 @@
     <string name="title">Titulo</string>
     <string name="price">Precio</string>
     <string name="description">Descripción</string>
+    <string name="category">Categoria</string>
     <string name="dollar_sign">$</string>
 
 </resources>

@@ -1,5 +1,6 @@
 package com.toolstodo.ecommerce.data.repository
 
+import com.toolstodo.ecommerce.data.model.CategoryModel
 import com.toolstodo.ecommerce.data.model.ProductModel
 import com.toolstodo.ecommerce.data.network.PlatziStoreApiClient
 import com.toolstodo.ecommerce.domain.repository.StoreRepository
@@ -14,5 +15,9 @@ class StoreRepositoryImpl @Inject constructor(
 
     override suspend fun getProductById(id: Int): ProductModel {
         return platziStoreApiClient.fetchProductById(id)
+    }
+
+    override suspend fun getCategories(): List<CategoryModel> {
+        return platziStoreApiClient.fetchCategories()
     }
 }
