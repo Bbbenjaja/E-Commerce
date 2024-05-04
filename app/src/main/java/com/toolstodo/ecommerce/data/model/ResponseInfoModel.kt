@@ -1,7 +1,7 @@
 package com.toolstodo.ecommerce.data.model
 
 import com.google.gson.annotations.SerializedName
-import com.toolstodo.ecommerce.domain.model.ResponseInfo
+import com.toolstodo.ecommerce.domain.model.product.ResponseInfo
 
 data class ResponseInfoModel(
     @SerializedName("limit")

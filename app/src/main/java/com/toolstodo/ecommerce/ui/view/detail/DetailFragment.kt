@@ -7,7 +7,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.navigation.fragment.navArgs
 import com.toolstodo.ecommerce.databinding.FragmentDetailBinding
-import com.toolstodo.ecommerce.domain.model.Product
+import com.toolstodo.ecommerce.domain.model.product.Product
 
 class DetailFragment : Fragment() {
 

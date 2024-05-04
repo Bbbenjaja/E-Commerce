@@ -9,7 +9,6 @@ import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.toolstodo.ecommerce.R
 import com.toolstodo.ecommerce.databinding.FragmentHomeBinding
 import com.toolstodo.ecommerce.ui.view.common.recyclerview.category.CategoryAdapter
 import com.toolstodo.ecommerce.ui.view.common.recyclerview.product.ProductAdapter

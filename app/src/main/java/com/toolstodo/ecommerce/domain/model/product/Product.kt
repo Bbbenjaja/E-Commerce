@@ -1,4 +1,4 @@
-package com.toolstodo.ecommerce.domain.model
+package com.toolstodo.ecommerce.domain.model.product
 
 import java.io.Serializable
 

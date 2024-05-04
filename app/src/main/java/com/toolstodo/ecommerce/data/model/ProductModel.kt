@@ -1,7 +1,7 @@
 package com.toolstodo.ecommerce.data.model
 
 import com.google.gson.annotations.SerializedName
-import com.toolstodo.ecommerce.domain.model.Product
+import com.toolstodo.ecommerce.domain.model.product.Product
 
 data class ProductModel(
     @SerializedName("brand")
@@ -28,6 +28,6 @@ data class ProductModel(
     val title: String
 )
 
-fun ProductModel.toDomain(): Product{
+fun ProductModel.toDomain(): Product {
     return Product(brand, category, description, discountPercentage, id, images, price, rating, stock, thumbnail, title)
 }

@@ -3,8 +3,9 @@ package com.toolstodo.ecommerce.ui.view.common.recyclerview.product
 import android.view.View
 import androidx.recyclerview.widget.RecyclerView
 import com.squareup.picasso.Picasso
+import com.toolstodo.ecommerce.R
 import com.toolstodo.ecommerce.databinding.ProductItemBinding
-import com.toolstodo.ecommerce.domain.model.Product
+import com.toolstodo.ecommerce.domain.model.product.Product
 
 class ProductHolder(
     itemView: View,
@@ -23,6 +24,9 @@ class ProductHolder(
             txtTitle.text = product.title
             txtDescription.text = product.description
             txtPrice.text = product.price.toString()
+            txtRating.text = product.rating.toString()
+            txtDiscount.text =
+                itemView.context.getString(R.string.discount_text, product.discountPercentage)
         }
 
         itemView.setOnClickListener {

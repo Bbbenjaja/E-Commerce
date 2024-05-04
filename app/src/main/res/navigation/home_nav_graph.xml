@@ -22,7 +22,7 @@
         tools:layout="@layout/fragment_detail" >
         <argument
             android:name="product"
-            app:argType="com.toolstodo.ecommerce.domain.model.Product" />
+            app:argType="com.toolstodo.ecommerce.domain.model.product.Product" />
     </fragment>
 
 </navigation>

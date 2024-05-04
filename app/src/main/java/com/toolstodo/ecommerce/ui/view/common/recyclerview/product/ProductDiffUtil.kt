@@ -1,7 +1,7 @@
 package com.toolstodo.ecommerce.ui.view.common.recyclerview.product
 
 import androidx.recyclerview.widget.DiffUtil
-import com.toolstodo.ecommerce.domain.model.Product
+import com.toolstodo.ecommerce.domain.model.product.Product
 
 class ProductDiffUtil constructor(
     private val oldList: List<Product>,

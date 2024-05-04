@@ -12,6 +12,9 @@
     <string name="price">Precio</string>
     <string name="description">Descripción</string>
     <string name="category">Categoria</string>
+    <string name="rating">Valoración</string>
+    <string name="discount">Descuento</string>
     <string name="dollar_sign">$</string>
+    <string name="discount_text">- %.2f %%</string>
 
 </resources>

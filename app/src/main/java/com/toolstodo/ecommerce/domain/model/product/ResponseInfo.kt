@@ -1,4 +1,4 @@
-package com.toolstodo.ecommerce.domain.model
+package com.toolstodo.ecommerce.domain.model.product
 
 data class ResponseInfo(
     val limit: Int,

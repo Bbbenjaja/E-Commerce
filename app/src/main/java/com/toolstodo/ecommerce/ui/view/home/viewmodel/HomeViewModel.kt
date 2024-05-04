@@ -3,7 +3,8 @@ package com.toolstodo.ecommerce.ui.view.home.viewmodel
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.toolstodo.ecommerce.domain.model.ResponseInfo
+import com.toolstodo.ecommerce.domain.model.category.Category
+import com.toolstodo.ecommerce.domain.model.product.ResponseInfo
 import com.toolstodo.ecommerce.domain.usecases.GetCategoriesUseCase
 import com.toolstodo.ecommerce.domain.usecases.GetResponseInfoUseCase
 import dagger.hilt.android.lifecycle.HiltViewModel
@@ -20,7 +21,7 @@ class HomeViewModel @Inject constructor(
     private val _infoState = MutableLiveData<ResponseInfo>()
     val infoState get() = _infoState
 
-    private val _categoryState = MutableLiveData<List<String>>()
+    private val _categoryState = MutableLiveData<List<Category>>()
     val categoryState get() = _categoryState
 
     val limit: Int = 20

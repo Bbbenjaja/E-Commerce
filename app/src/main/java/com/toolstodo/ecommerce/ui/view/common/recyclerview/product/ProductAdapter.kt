@@ -5,7 +5,7 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
 import com.toolstodo.ecommerce.R
-import com.toolstodo.ecommerce.domain.model.Product
+import com.toolstodo.ecommerce.domain.model.product.Product
 
 class ProductAdapter constructor(
     private var productList: List<Product>,
