@@ -6,6 +6,7 @@ import androidx.lifecycle.viewModelScope
 import com.toolstodo.ecommerce.domain.model.category.Category
 import com.toolstodo.ecommerce.domain.model.product.ResponseInfo
 import com.toolstodo.ecommerce.domain.usecases.GetCategoriesUseCase
+import com.toolstodo.ecommerce.domain.usecases.GetProductsInCategoryUseCase
 import com.toolstodo.ecommerce.domain.usecases.GetResponseInfoUseCase
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.Dispatchers
@@ -15,7 +16,8 @@ import javax.inject.Inject
 @HiltViewModel
 class HomeViewModel @Inject constructor(
     private val getResponseInfoUseCase: GetResponseInfoUseCase,
-    private val getCategoriesUseCase: GetCategoriesUseCase
+    private val getCategoriesUseCase: GetCategoriesUseCase,
+    private val getProductsInCategoryUseCase: GetProductsInCategoryUseCase
 ) : ViewModel() {
 
     private val _infoState = MutableLiveData<ResponseInfo>()
@@ -41,6 +43,18 @@ class HomeViewModel @Inject constructor(
     fun fetchCategories(){
         viewModelScope.launch(Dispatchers.IO){
             _categoryState.postValue(getCategoriesUseCase())
+        }
+    }
+
+    fun fetchProductsInCategory(category: String, limit: Int, skip: Int){
+        viewModelScope.launch(Dispatchers.IO){
+            _infoState.postValue(getProductsInCategoryUseCase(category, limit, skip))
+        }
+    }
+
+    fun refreshCategorySelected(categories: List<Category>){
+        viewModelScope.launch(Dispatchers.IO){
+            _categoryState.postValue(categories)
         }
     }
 

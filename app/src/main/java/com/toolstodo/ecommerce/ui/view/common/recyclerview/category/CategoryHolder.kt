@@ -11,10 +11,15 @@ class CategoryHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
 
     private val binding = CategoryItemBinding.bind(itemView)
 
-    fun render(category: Category) {
+    fun render(category: Category, onCategorySelected: (String) -> Unit) {
         with(binding) {
             txtCategory.text = category.name
             validateSelected(category.isSelected)
+        }
+
+        itemView.setOnClickListener {
+            onCategorySelected(category.name)
+            validateSelected(true)
         }
     }
 

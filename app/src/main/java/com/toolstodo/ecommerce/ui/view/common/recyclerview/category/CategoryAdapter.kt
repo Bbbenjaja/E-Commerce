@@ -6,10 +6,10 @@ import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
 import com.toolstodo.ecommerce.R
 import com.toolstodo.ecommerce.domain.model.category.Category
-import java.util.Locale
 
 class CategoryAdapter constructor(
     private var categoryList: List<Category>,
+    private val onCategorySelected: (String) -> Unit
 ) : RecyclerView.Adapter<CategoryHolder>() {
 
     fun updateList(newList: List<Category>) {
@@ -30,6 +30,6 @@ class CategoryAdapter constructor(
     }
 
     override fun onBindViewHolder(holder: CategoryHolder, position: Int) {
-        holder.render(categoryList[position])
+        holder.render(categoryList[position], onCategorySelected)
     }
 }

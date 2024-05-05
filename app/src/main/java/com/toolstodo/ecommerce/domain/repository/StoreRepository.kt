@@ -12,4 +12,6 @@ interface StoreRepository {
 
     suspend fun getCategories(): List<String>
 
+    suspend fun getProductsInCategory(category: String, limit: Int, skip: Int): ResponseInfoModel
+
 }

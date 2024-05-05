@@ -12,10 +12,10 @@ class CategoryDiffUtil constructor(
     override fun getNewListSize(): Int = newList.size
 
     override fun areItemsTheSame(oldItemPosition: Int, newItemPosition: Int): Boolean {
-        return newList[newItemPosition].javaClass == oldList[oldItemPosition].javaClass
+        return false
     }
 
     override fun areContentsTheSame(oldItemPosition: Int, newItemPosition: Int): Boolean {
-        return newList[newItemPosition].hashCode() == oldList[oldItemPosition].hashCode()
+        return false
     }
 }
