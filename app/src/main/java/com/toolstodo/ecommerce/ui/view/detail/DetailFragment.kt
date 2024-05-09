@@ -55,7 +55,8 @@ class DetailFragment : Fragment(), GestureDetector.OnGestureListener {
         }
 
         productAdapter = ProductAdapter(emptyList()) {
-
+            val navToSelf = DetailFragmentDirections.actionDetailFragmentSelf(it)
+            findNavController().navigate(navToSelf)
         }
 
         gestureDetector = GestureDetector(requireContext(), this)
