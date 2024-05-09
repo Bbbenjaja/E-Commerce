@@ -96,7 +96,6 @@ class HomeFragment : Fragment() {
     private fun initObservers() {
         viewModel.infoState.observe(viewLifecycleOwner) { responseInfo ->
             productAdapter.updateList(responseInfo.products)
-            binding.rvProducts.scrollToPosition(0)
         }
 
         viewModel.categoryState.observe(viewLifecycleOwner) { categories ->
