@@ -7,6 +7,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.appcompat.widget.SearchView
 import androidx.fragment.app.viewModels
+import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.toolstodo.ecommerce.R
@@ -41,7 +42,10 @@ class SearchFragment : Fragment() {
 
     private fun initComponents() {
         viewModel.query = args.query
-        productSearchAdapter = ProductSearchAdapter(emptyList())
+        productSearchAdapter = ProductSearchAdapter(emptyList()) {
+            val navToDetail = SearchFragmentDirections.actionSearchFragmentToDetailFragment(it)
+            findNavController().navigate(navToDetail)
+        }
 
         initUI()
         initListeners()

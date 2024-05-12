@@ -10,6 +10,7 @@ import com.toolstodo.ecommerce.ui.view.common.recyclerview.product.ProductDiffUt
 
 class ProductSearchAdapter constructor(
     private var productList: List<Product>,
+    private val onProductClick: (Product) -> Unit
 ) : RecyclerView.Adapter<ProductSearchHolder>() {
 
     fun updateList(newList: List<Product>) {
@@ -21,7 +22,8 @@ class ProductSearchAdapter constructor(
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ProductSearchHolder {
         return ProductSearchHolder(
-            LayoutInflater.from(parent.context).inflate(R.layout.product_search_item, parent, false)
+            LayoutInflater.from(parent.context).inflate(R.layout.product_search_item, parent, false),
+            onProductClick
         )
     }
 

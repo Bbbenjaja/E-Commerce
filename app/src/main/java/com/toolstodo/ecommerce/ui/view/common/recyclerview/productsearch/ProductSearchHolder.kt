@@ -6,7 +6,11 @@ import com.squareup.picasso.Picasso
 import com.toolstodo.ecommerce.databinding.ProductSearchItemBinding
 import com.toolstodo.ecommerce.domain.model.product.Product
 
-class ProductSearchHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
+class ProductSearchHolder(
+    itemView: View,
+    private val onProductClick: (Product) -> Unit,
+) :
+    RecyclerView.ViewHolder(itemView) {
 
     private val binding = ProductSearchItemBinding.bind(itemView)
 
@@ -23,6 +27,10 @@ class ProductSearchHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
             txtPrice.text = product.price.toString()
             txtRating.text = product.rating.toString()
 
+        }
+
+        itemView.setOnClickListener {
+            onProductClick(product)
         }
     }
 
