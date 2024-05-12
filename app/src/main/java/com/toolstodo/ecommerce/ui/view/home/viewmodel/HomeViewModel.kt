@@ -26,7 +26,7 @@ class HomeViewModel @Inject constructor(
     private val _categoryState = MutableLiveData<List<Category>>()
     val categoryState get() = _categoryState
 
-    val limit: Int = 20
+    val limit: Int = 0
     var skip: Int = 0
 
     init {

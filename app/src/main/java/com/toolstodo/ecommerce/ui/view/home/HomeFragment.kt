@@ -5,7 +5,6 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.SearchView.OnQueryTextListener
 import androidx.appcompat.widget.SearchView
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.viewModels
@@ -96,7 +95,8 @@ class HomeFragment : Fragment() {
             svSearcher.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
 
                 override fun onQueryTextSubmit(query: String?): Boolean {
-                    val navToSearch = HomeFragmentDirections.actionHomeFragmentToSearchFragment(query!!)
+                    val navToSearch =
+                        HomeFragmentDirections.actionHomeFragmentToSearchFragment(query!!)
                     findNavController().navigate(navToSearch)
                     return true
                 }
