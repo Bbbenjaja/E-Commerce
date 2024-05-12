@@ -16,6 +16,7 @@
     <string name="discount">Descuento</string>
     <string name="related">Relacionado</string>
     <string name="all">Todo</string>
+    <string name="brand">Marca</string>
 
     <string name="dollar_sign">$</string>
     <string name="discount_text">- %.2f %%</string>

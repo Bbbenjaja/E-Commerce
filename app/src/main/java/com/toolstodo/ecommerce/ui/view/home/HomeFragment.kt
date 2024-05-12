@@ -5,6 +5,8 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.SearchView.OnQueryTextListener
+import androidx.appcompat.widget.SearchView
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
@@ -78,18 +80,32 @@ class HomeFragment : Fragment() {
     }
 
     private fun initListeners() {
-        with(binding){
+        with(binding) {
             cvCategory.setOnClickListener {
                 allCategory.isSelected = true
                 validateAllCategory()
 
-                if (allCategory.isSelected){
+                if (allCategory.isSelected) {
                     viewModel.fetchResponseInfo(limit = viewModel.limit, skip = viewModel.skip)
                     viewModel.fetchCategories()
                 }
 
                 rvProducts.scrollToPosition(0)
             }
+
+            svSearcher.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
+
+                override fun onQueryTextSubmit(query: String?): Boolean {
+                    val navToSearch = HomeFragmentDirections.actionHomeFragmentToSearchFragment(query!!)
+                    findNavController().navigate(navToSearch)
+                    return true
+                }
+
+                override fun onQueryTextChange(newText: String?): Boolean {
+                    return true
+                }
+
+            })
         }
     }
 
@@ -105,8 +121,8 @@ class HomeFragment : Fragment() {
 
     }
 
-    private fun validateAllCategory(){
-        with(binding){
+    private fun validateAllCategory() {
+        with(binding) {
             if (allCategory.isSelected) {
                 cvCategory.setCardBackgroundColor(
                     ContextCompat.getColor(

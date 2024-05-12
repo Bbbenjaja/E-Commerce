@@ -29,5 +29,9 @@ class StoreRepositoryImpl @Inject constructor(
         return dummyStoreApiClient.fetchProductsInCategory(category, limit, skip)
     }
 
+    override suspend fun getProductsByName(name: String, limit: Int, skip: Int): ResponseInfoModel {
+        return dummyStoreApiClient.fetchProductsByName(name, limit = limit, skip = skip)
+    }
+
 
 }

@@ -23,4 +23,11 @@ interface DummyStoreApiClient {
         @Query("skip") skip: Int,
     ): ResponseInfoModel
 
+    @GET("products/search")
+    suspend fun fetchProductsByName(
+        @Query("q") name: String,
+        @Query("limit") limit: Int,
+        @Query("skip") skip: Int,
+    ): ResponseInfoModel
+
 }
