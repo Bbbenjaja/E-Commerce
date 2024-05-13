@@ -1,5 +1,6 @@
 package com.toolstodo.ecommerce.domain.repository
 
+import com.toolstodo.ecommerce.data.local.entities.FavoriteEntity
 import com.toolstodo.ecommerce.data.local.entities.SuggestionEntity
 import com.toolstodo.ecommerce.data.model.ProductModel
 import com.toolstodo.ecommerce.data.model.ResponseInfoModel
@@ -22,5 +23,13 @@ interface StoreRepository {
     suspend fun insertSuggestions(suggestions: List<SuggestionEntity>)
 
     suspend fun deleteAllSuggestions()
+
+    suspend fun insertFavorite(favorite: FavoriteEntity)
+
+    suspend fun getAllFavorites(): List<FavoriteEntity>
+
+    suspend fun verifyFav(id: Int): Boolean
+
+    suspend fun deleteFavorite(id: Int)
 
 }

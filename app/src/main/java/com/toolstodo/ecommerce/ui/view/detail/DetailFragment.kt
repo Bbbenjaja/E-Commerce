@@ -1,5 +1,6 @@
 package com.toolstodo.ecommerce.ui.view.detail
 
+import android.annotation.SuppressLint
 import android.os.Bundle
 import android.util.Log
 import android.view.GestureDetector
@@ -66,6 +67,7 @@ class DetailFragment : Fragment(), GestureDetector.OnGestureListener {
         initObservers()
 
         viewModel.getProductsInCategory(product.category)
+        viewModel.verifyFav(product.id)
     }
 
     private fun initUI() {
@@ -91,6 +93,7 @@ class DetailFragment : Fragment(), GestureDetector.OnGestureListener {
         }
     }
 
+    @SuppressLint("ClickableViewAccessibility")
     private fun initListeners() {
         with(binding) {
             btnBack.setOnClickListener {
@@ -105,12 +108,23 @@ class DetailFragment : Fragment(), GestureDetector.OnGestureListener {
                 gestureDetector.onTouchEvent(motionEvent)
             }
 
+            btnFav.setOnClickListener {
+                product.isFavorite = !product.isFavorite
+                modifyFavIcon()
+                viewModel.modifyFav(product)
+            }
+
         }
     }
 
     private fun initObservers() {
         viewModel.infoState.observe(viewLifecycleOwner) { responseInfo ->
             productAdapter.updateList(responseInfo.products.filter { it.id != product.id })
+        }
+
+        viewModel.favState.observe(viewLifecycleOwner) { isFav ->
+            product.isFavorite = isFav
+            modifyFavIcon()
         }
     }
 
@@ -120,6 +134,16 @@ class DetailFragment : Fragment(), GestureDetector.OnGestureListener {
                 Picasso.get().load(url).into(imgProduct)
             }
         }
+    }
+
+    private fun modifyFavIcon(){
+        val icon = if(product.isFavorite){
+            R.drawable.ic_fav
+        }else{
+            R.drawable.ic_unfav
+        }
+
+        binding.btnFav.setImageResource(icon)
     }
 
     //---- Gesture detector methods

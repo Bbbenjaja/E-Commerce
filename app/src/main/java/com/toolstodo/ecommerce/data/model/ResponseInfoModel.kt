@@ -11,9 +11,15 @@ data class ResponseInfoModel(
     @SerializedName("skip")
     val skip: Int,
     @SerializedName("total")
-    val total: Int
+    val total: Int,
 )
 
 fun ResponseInfoModel.toDomain(): ResponseInfo {
-    return ResponseInfo(limit = limit, skip = skip, total = total, products = products.map { it.toDomain() })
+    return ResponseInfo(
+        limit = limit,
+        skip = skip,
+        total = total,
+        products = products.map { productModel ->
+            productModel.toDomain()
+        })
 }

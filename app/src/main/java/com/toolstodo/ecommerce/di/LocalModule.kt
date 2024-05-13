@@ -2,9 +2,9 @@ package com.toolstodo.ecommerce.di
 
 import android.content.Context
 import androidx.room.Room
-import androidx.room.RoomDatabase
-import com.toolstodo.ecommerce.data.local.SuggestionDatabase
-import com.toolstodo.ecommerce.data.local.dao.SuggestionDao
+import com.toolstodo.ecommerce.data.local.StoreDatabase
+import com.toolstodo.ecommerce.data.local.dao.favorite.FavoriteDao
+import com.toolstodo.ecommerce.data.local.dao.suggestion.SuggestionDao
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -16,18 +16,24 @@ import javax.inject.Singleton
 @InstallIn(SingletonComponent::class)
 object LocalModule {
 
-    private const val SUGGESTION_DB_NAME = "suggestion_database"
+    private const val STORE_DB_NAME = "suggestion_database"
 
     @Singleton
     @Provides
-    fun provideRoom(@ApplicationContext context: Context): SuggestionDatabase {
-        return Room.databaseBuilder(context, SuggestionDatabase::class.java, SUGGESTION_DB_NAME).build()
+    fun provideStoreDB(@ApplicationContext context: Context): StoreDatabase {
+        return Room.databaseBuilder(context, StoreDatabase::class.java, STORE_DB_NAME).build()
     }
 
     @Singleton
     @Provides
-    fun provideSuggestionDao(db: SuggestionDatabase): SuggestionDao {
+    fun provideSuggestionDao(db: StoreDatabase): SuggestionDao {
         return db.getSuggestionDao()
+    }
+
+    @Singleton
+    @Provides
+    fun provideFavoriteDao(db: StoreDatabase): FavoriteDao {
+        return db.getFavoriteDao()
     }
 
 }

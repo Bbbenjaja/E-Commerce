@@ -1,4 +1,4 @@
-package com.toolstodo.ecommerce.data.local.dao
+package com.toolstodo.ecommerce.data.local.dao.suggestion
 
 import androidx.room.Dao
 import androidx.room.Insert
