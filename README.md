@@ -11,7 +11,7 @@ ___
 - Inyección de dependencias con Dagger Hilt.
 - Pruebas unitarias usando Kotlin-Test, Junit, Mockk,
 - Navegación con Navigation Component.
-- Offline first.
+- Sección de recomendaciones
 - Uso de LiveData para observar cambios en el ViewModel.
 - Manejo de corroutines y manejo del ciclo de vida de fragments.
 - La cantidad de productos por columna dentro del RecyclerView se adaptan dependiendo del tamaño de la pantalla.
