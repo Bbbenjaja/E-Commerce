@@ -14,8 +14,10 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.toolstodo.ecommerce.R
 import com.toolstodo.ecommerce.databinding.FragmentHomeBinding
 import com.toolstodo.ecommerce.domain.model.category.Category
+import com.toolstodo.ecommerce.domain.model.product.Product
 import com.toolstodo.ecommerce.ui.view.common.recyclerview.category.CategoryAdapter
 import com.toolstodo.ecommerce.ui.view.common.recyclerview.product.ProductAdapter
+import com.toolstodo.ecommerce.ui.view.common.recyclerview.suggestproduct.SuggestProductAdapter
 import com.toolstodo.ecommerce.ui.view.home.viewmodel.HomeViewModel
 import dagger.hilt.android.AndroidEntryPoint
 
@@ -28,6 +30,7 @@ class HomeFragment : Fragment() {
 
     private lateinit var productAdapter: ProductAdapter
     private lateinit var categoryAdapter: CategoryAdapter
+    private lateinit var suggestProductAdapter: SuggestProductAdapter
     private lateinit var allCategory: Category
 
     override fun onCreateView(
@@ -49,13 +52,13 @@ class HomeFragment : Fragment() {
         initUI()
         initListeners()
         initObservers()
+
+        viewModel.getAllSuggestions()
     }
 
     private fun initUI() {
         productAdapter = ProductAdapter(emptyList()) {
-            val navToDetail =
-                HomeFragmentDirections.actionHomeFragmentToDetailFragment(product = it)
-            findNavController().navigate(navToDetail)
+            navToDetail(it)
         }
 
         categoryAdapter = CategoryAdapter(mutableListOf()) { category ->
@@ -68,6 +71,10 @@ class HomeFragment : Fragment() {
             validateAllCategory()
         }
 
+        suggestProductAdapter = SuggestProductAdapter(emptyList()) {
+            navToDetail(it)
+        }
+
         with(binding) {
             rvProducts.layoutManager = GridLayoutManager(requireContext(), 2)
             rvProducts.adapter = productAdapter
@@ -75,6 +82,9 @@ class HomeFragment : Fragment() {
             rvCategories.layoutManager =
                 LinearLayoutManager(requireContext(), LinearLayoutManager.HORIZONTAL, false)
             rvCategories.adapter = categoryAdapter
+
+            rvForYou.layoutManager = LinearLayoutManager(requireContext(), LinearLayoutManager.HORIZONTAL, false)
+            rvForYou.adapter = suggestProductAdapter
         }
     }
 
@@ -119,6 +129,20 @@ class HomeFragment : Fragment() {
             binding.rvCategories.scrollToPosition(viewModel.categoryState.value!!.indexOfFirst { it.isSelected })
         }
 
+        viewModel.productSuggestionState.observe(viewLifecycleOwner) { responseInfo ->
+            suggestProductAdapter.updateList(responseInfo.products)
+        }
+
+        viewModel.suggestionState.observe(viewLifecycleOwner) { suggestions ->
+            if (suggestions.isNotEmpty()) {
+                viewModel.getProductsBySuggestions(
+                    suggestions[0].category,
+                    viewModel.limit,
+                    viewModel.skip
+                )
+            }
+        }
+
     }
 
     private fun validateAllCategory() {
@@ -153,6 +177,12 @@ class HomeFragment : Fragment() {
                 )
             }
         }
+    }
+
+    private fun navToDetail(product: Product) {
+        val navToDetail =
+            HomeFragmentDirections.actionHomeFragmentToDetailFragment(product)
+        findNavController().navigate(navToDetail)
     }
 
 }

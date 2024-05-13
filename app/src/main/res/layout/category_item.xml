@@ -23,7 +23,7 @@
             android:layout_margin="6dp"
             android:textColor="@color/text_color_primary"
             android:textSize="16sp"
-            android:textStyle="bold"
+            android:textStyle="normal"
             tools:text="@string/category" />
 
     </androidx.appcompat.widget.LinearLayoutCompat>

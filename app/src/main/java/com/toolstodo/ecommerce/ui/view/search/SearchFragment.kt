@@ -10,8 +10,9 @@ import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.toolstodo.ecommerce.R
 import com.toolstodo.ecommerce.databinding.FragmentSearchBinding
+import com.toolstodo.ecommerce.domain.model.product.ResponseInfo
+import com.toolstodo.ecommerce.domain.model.suggestion.Suggestion
 import com.toolstodo.ecommerce.ui.view.common.recyclerview.productsearch.ProductSearchAdapter
 import com.toolstodo.ecommerce.ui.view.search.viewmodel.SearchViewModel
 import dagger.hilt.android.AndroidEntryPoint
@@ -90,6 +91,15 @@ class SearchFragment : Fragment() {
         viewModel.infoState.observe(viewLifecycleOwner) { responseInfo ->
             productSearchAdapter.updateList(responseInfo.products)
             binding.rvProductSearch.scrollToPosition(0)
+            saveSuggestions(responseInfo)
+        }
+    }
+
+    private fun saveSuggestions(responseInfo: ResponseInfo) {
+        if (responseInfo.products.isNotEmpty()){
+            viewModel.insertSuggestions(listOf(
+                Suggestion(responseInfo.products[0].category,querySearched = args.query)
+            ))
         }
     }
 
